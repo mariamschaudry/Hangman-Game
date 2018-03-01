@@ -14,16 +14,13 @@ main {
 body {
     background: url("../images/countriesbackground.jpg");
     display: flex; 
-    font-family: "Oswald", sans-serif; 
+    flex-direction: column;
+    font-family: "Oswald", sans-serif;
 }
 
-/* .card-panel {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    margin-top: 20px; 
+.card {
     margin-left: 20px; 
-    background-color: white;   
-    font-family: "Oswald", sans-serif; 
-    text-align: center; 
-
+    margin-top: 20px; 
+    opacity: .8;
 }
+
