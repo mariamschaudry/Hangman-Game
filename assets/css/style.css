@@ -1,0 +1,29 @@
+.game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+  }
+
+main {
+    flex: 1 0 auto; 
+}
+
+body {
+    background: url("../images/countriesbackground.jpg");
+    display: flex; 
+    font-family: "Oswald", sans-serif; 
+}
+
+/* .card-panel {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    margin-top: 20px; 
+    margin-left: 20px; 
+    background-color: white;   
+    font-family: "Oswald", sans-serif; 
+    text-align: center; 
+
+}
