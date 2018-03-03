@@ -116,7 +116,7 @@ document.onkeyup = function (event) {
     remainingGuesses--;
     if (remainingGuesses === 0) {
         losses++;
-        alert("Sorry, the correct word was" + word)
+        alert("Sorry, the correct word was " + word)
         document.getElementById("losses").innerHTML=losses;
         reset(); 
     }
