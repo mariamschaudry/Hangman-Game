@@ -1,17 +1,17 @@
 // Global Variables //
 
 var wordArray = [
-    "Spain",
-    "France",
-    "Pakistan",
-    "Thailand",
-    "Canada", 
-    "Venezuela",
-    "Madagascar",
-    "Egypt", 
-    "Malaysia", 
-    "Japan", 
-    "Mali"
+    "spain",
+    "france",
+    "pakistan",
+    "thailand",
+    "canada", 
+    "venezuela",
+    "madagascar",
+    "egypt", 
+    "malaysia", 
+    "japan", 
+    "mali"
 ];
 
 // Number of wins. //
@@ -28,7 +28,7 @@ var playerGuess = [];
 
 // Number of guesses left. //
 
-var remainingGuesses = 10;
+var remainingGuesses = 12;
 
 // Incorrect player guesses. //
 
@@ -36,7 +36,7 @@ var incorrectGuesses = [];
 
 // Where the words are displayed. //
 
-var wordDisplay = '';  
+var wordDisplay = [];
 
 
 // ------------------------------------------------------------------------------------------------------------- //
@@ -58,29 +58,68 @@ console.log(splitWord)
 // Making the spaces for the letters to sit on. //
 
 function spaces () {
-    for (var i = 0; i < splitWord.length; i++) 
+    console.log("in spaces")
+    for (var i = 0; i < splitWord.length; i++) { 
+       // console.log("in loop");
         wordDisplay.push('_');
     }
-
+}
 console.log(wordDisplay) 
 
-function WordDisplay () {
+function showWordDisplay () {
     for (var m = 0; m < word.length; m++) {
-        if (word [m] === playerGuess)
-        wordDisplay[m] = word [m];
+        if (word [m] === playerGuess){
+            console.log("inside if");
+            wordDisplay[m] = word [m];
+            console.log(wordDisplay);
+        } 
      }
+     document.getElementById("wordDisplay").innerHTML=wordDisplay;
 }
 
+var incorrectIndex =0;
+function showLettersGuessed () {
+    for (var m = 0; m < word.length; m++) {
+        if (word.indexOf(playerGuess) === -1 && incorrectGuesses.indexOf( playerGuess) === -1 ) { 
+            incorrectGuesses[incorrectIndex++]=playerGuess;
+        }
+     document.getElementById("incorrectGuesses").innerHTML=incorrectGuesses;
+    }
+    
+}
+
+function reset() {
+    remainingGuesses = 12;
+    word = wordArray[Math.floor(Math.random() * wordArray.length)];
+    wordDisplay=[];
+    incorrectGuesses=[];
+    incorrectIndex=0;
+    spaces ();
+    document.getElementById("wordDisplay").innerHTML=wordDisplay;
+    document.getElementById("incorrectGuesses").innerHTML=incorrectGuesses;
+}
+
+spaces();
+//document.querySelector('#wordDisplay').innerHTML = wordDisplay.join(" ");
+showWordDisplay();
 // --------------------------------------------------------------------------------------------------------------- //
 // The Game Play //
 
 // First the player has to choose a letter. //
 
 document.onkeyup = function (event) {
-    playerGuess = event.key; }
-
-
-// This is if the player chooses correct letters. //
-
-
+    console.log(event.key)
+    playerGuess = event.key; 
+    showWordDisplay();
+    showLettersGuessed();
+    remainingGuesses--;
+    if (remainingGuesses === 0) {
+        reset(); // <--- Calling the function 
+    }
+    if (wordDisplay.indexOf('_') === -1) {
+        showWordDisplay();
+        alert("Congratulations! You guessed the word correctly!")
+        reset();
+    }
+}
 
