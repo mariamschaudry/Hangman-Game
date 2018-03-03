@@ -60,16 +60,15 @@ console.log(splitWord)
 function spaces () {
     console.log("in spaces")
     for (var i = 0; i < splitWord.length; i++) { 
-       // console.log("in loop");
         wordDisplay.push('_');
     }
 }
 console.log(wordDisplay) 
 
+// 
 function showWordDisplay () {
     for (var m = 0; m < word.length; m++) {
         if (word [m] === playerGuess){
-            console.log("inside if");
             wordDisplay[m] = word [m];
             console.log(wordDisplay);
         } 
@@ -88,6 +87,7 @@ function showLettersGuessed () {
     
 }
 
+// Resets the game to a new word. //
 function reset() {
     remainingGuesses = 12;
     word = wordArray[Math.floor(Math.random() * wordArray.length)];
@@ -97,14 +97,15 @@ function reset() {
     spaces ();
     document.getElementById("wordDisplay").innerHTML=wordDisplay;
     document.getElementById("incorrectGuesses").innerHTML=incorrectGuesses;
+
 }
 
 spaces();
 //document.querySelector('#wordDisplay').innerHTML = wordDisplay.join(" ");
 showWordDisplay();
 // --------------------------------------------------------------------------------------------------------------- //
-// The Game Play //
 
+// The Game Play //
 // First the player has to choose a letter. //
 
 document.onkeyup = function (event) {
@@ -114,12 +115,19 @@ document.onkeyup = function (event) {
     showLettersGuessed();
     remainingGuesses--;
     if (remainingGuesses === 0) {
-        reset(); // <--- Calling the function 
+        losses++;
+        alert("Sorry, the correct word was" + word)
+        document.getElementById("losses").innerHTML=losses;
+        reset(); 
     }
     if (wordDisplay.indexOf('_') === -1) {
         showWordDisplay();
         alert("Congratulations! You guessed the word correctly!")
+        wins++; 
+        document.getElementById("wins").innerHTML=wins;
         reset();
-    }
+    }   
 }
+
+
 
